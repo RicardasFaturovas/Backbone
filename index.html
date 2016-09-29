@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Todo list application</title>
+</head>
+<body>
+<!--~~~~~~~~~~~~~~~~ HTML ~~~~~~~~~~~~~~~~~~~~~ -->
+<section id="todo">
+  <header id="header">
+    <h1>Todos</h1>
+    <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
+    <input id="new-todo" placeholder="What needs to be done?">
+  </header>
+  <section id="main">
+    <ul id="todo-list"></ul>
+  </section>
+</section>
+
+<!--~~~~~~~~~~~~~~~ VIEW TEMPLATE ~~~~~~~~~~~   -->
+<script type="text/template" id="item-template">
+  <div class="view">
+    <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+    <label><%- title %></label>
+    <input class="edit" value="<%- title %>">
+    <button class="destroy">remove</button>
+  </div>
+</script>
+<!--~~~~~~~~~~~~~~~ COMPLETED VIEW TEMPLATE ~~~~~~~~~~~   -->
+
+<section id="completed-todo">
+  <header id="header">
+    <h1>Completed</h1>
+    <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
+    <input id="new-todo1" placeholder="What needs to be done?">
+  </header>
+  <section id="main">
+    <ul id="todo-list1"></ul>
+  </section>
+</section>
+  
+  <!--~~~~~~~~~~~~~~~ Libraries ~~~~~~~~~~~~~~~~~ -->
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
+
+  <script src="C:\Projects\Backbone\MODELS\app.TodoItem.js"></script>
+  <script src="C:\Projects\Backbone\COLLECTIONS\app.TodoListCollection.js"></script>
+  <script src="C:\Projects\Backbone\VIEWS\app.TodoView.js" type="text/javascript"></script>
+  <script src="C:\Projects\Backbone\VIEWS\app.TodoListView.js" type="text/javascript"></script>  
+  <script src="C:\Projects\Backbone\VIEWS\app.CompletedView.js" type="text/javascript"></script>  
+ <!--~~~~~~~~~~~~~~~~ JS CODE ~~~~~~~~~~~~~~~~~~~~~ -->
+   <script type="text/javascript">
+  
+   var app = app || {} 
+   app.todo = new app.TodoItem();
+   app.todoListCollection = new app.TodoListCollection();
+   //app.completedTodoListCollection = app.todoListCollection.byCompleted('true');
+   app.appView = new app.TodoListView();  
+   app.completedView = new app.CompletedView();  
+  
+  </script>
+  
+</body>
+</html>
