@@ -27,9 +27,14 @@ app.CompletedView =  Backbone.View.extend({
        
       },
       removeOne1: function(todo){
+          console.log(todo);
+          this.$('#todo-list1').html(''); 
+        this.collection.each(this.addOne1, this);
         var view = new app.TodoView({model: todo});
-         console.log(view.render().el);
-        $('#todo-list1 li').remove();
+         console.log(view);
+         
+         //console.log(todo.cid);
+        $('#todo-list1 li #' + view.model.cid).remove();
        
       },
         addAll1: function(){
