@@ -3,6 +3,7 @@
       el: '#todo',
       initialize: function(){
           this.doneCollection= this.options.doneCollection; 
+          this.ongoingCollection= this.options.ongoingCollection; 
           this.completed = this.$('#toggleAll');
           this.input = this.$('#new-todo');
           this.collection.on('add', this.addOne, this);
@@ -25,6 +26,7 @@
         addOne: function(todo){
         var view = new app.TodoView({model: todo});
         $('#todo-list').append(view.render().el);
+        this.ongoingCollection.add(todo);
       },
         addAll: function(){
         this.$('#todo-list').html(''); 
@@ -33,14 +35,12 @@
       addToCompleted: function(todo){
         var view = new app.TodoView({model: todo});
         if(todo.get('completed')===true){
-
-         
           this.doneCollection.add(todo);
+           this.ongoingCollection.remove(todo);  
         }
         else {
-          //console.log(this.doneCollection);
-          this.doneCollection.remove(todo);
-          
+          this.ongoingCollection.add(todo);
+          this.doneCollection.remove(todo);  
         }
       },
       removeFromCompleted: function(todo){
