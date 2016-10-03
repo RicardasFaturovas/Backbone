@@ -20,7 +20,8 @@
 
 <!--~~~~~~~~~~~~~~~ VIEW TEMPLATE ~~~~~~~~~~~   -->
 <script type="text/template" id="item-template">
-  <div class="view">
+  <div class="view" id= "<%- this.model.cid%>">
+     <%- this.model.cid%>
     <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
     <label><%- title %></label>
     <input class="edit" value="<%- title %>">

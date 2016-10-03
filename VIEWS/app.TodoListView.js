@@ -34,12 +34,13 @@
         var view = new app.TodoView({model: todo});
         if(todo.get('completed')===true){
 
-          console.log(todo);
+         
           this.doneCollection.add(todo);
         }
         else {
-          console.log(this.doneCollection);
+          //console.log(this.doneCollection);
           this.doneCollection.remove(todo);
+          
         }
       },
       removeFromCompleted: function(todo){

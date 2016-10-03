@@ -2,6 +2,10 @@
  app.TodoView = Backbone.View.extend({
   tagName: 'li',
   template: _.template($('#item-template').html()),
+  parse: function(response) {
+        response.cid = this.cid;
+        return response;
+    },
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
     this.input = this.$('.edit');
