@@ -40,7 +40,19 @@
     <ul id="todo-list1"></ul>
   </section>
 </section>
-  
+<!--~~~~~~~~~~~~~~~ ONGOING VIEW TEMPLATE ~~~~~~~~~~~   -->
+
+<section id="ongoing-todo">
+  <header id="header">
+    <h1>Completed</h1>
+    <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
+    <input class="new-todo1" placeholder="What needs to be done?">
+  </header>
+  <section id="main">
+    <ul class="todo-list1"></ul>
+  </section>
+</section>
+
   <!--~~~~~~~~~~~~~~~ Libraries ~~~~~~~~~~~~~~~~~ -->
   
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
@@ -54,6 +66,7 @@
   <script src="VIEWS/app.TodoView.js" type="text/javascript"></script>
   <script src="VIEWS/app.TodoListView.js" type="text/javascript"></script>
   <script src="VIEWS/app.CompletedView.js" type="text/javascript"></script>
+  <script src="VIEWS/app.ongoingView.js" type="text/javascript"></script>
 
 
  <!--~~~~~~~~~~~~~~~~ JS CODE ~~~~~~~~~~~~~~~~~~~~~ -->
@@ -64,9 +77,11 @@
    app.todo = new app.TodoItem();
    app.todoListCollection = new app.TodoListCollection();
    app.completedTodoListCollection = app.todoListCollection.byCompleted('true');
-   app.appView = new app.TodoListView({collection: app.todoListCollection, doneCollection: app.completedTodoListCollection});  
+   app.ongoingTodoListCollection = app.todoListCollection.byCompleted('false');
+   app.appView = new app.TodoListView({collection: app.todoListCollection, doneCollection: app.completedTodoListCollection, ongoingCollection: app.ongoingTodoListCollection });
    app.completedView = new app.CompletedView({collection: app.completedTodoListCollection});  
-  
+   app.ongoingView = new app.OngoingView({collection: app.ongoingTodoListCollection});
+
   </script>
   
 </body>

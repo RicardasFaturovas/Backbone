@@ -10,6 +10,8 @@
         return new app.TodoListCollection(filtered);
     },done: function() {
       return this.where({completed: true});
+    },ongoing: function() {
+      return this.where({completed: false});
     }
    });
 

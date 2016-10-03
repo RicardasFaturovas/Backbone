@@ -1,6 +1,6 @@
 var app = app || {} 
-app.CompletedView =  Backbone.View.extend({  
-    el:'#completed-todo',
+app.OngoingView =  Backbone.View.extend({  
+    el:'#ongoing-todo',
     initialize: function(attrs){
           this.completed = this.$('#toggleAll');
           this.input = this.$('.new-todo1');
@@ -12,9 +12,9 @@ app.CompletedView =  Backbone.View.extend({
           console.log(this.collection);
       },
       render: function(){
-          var done = this.collection.done();
-          this.collection = this.collection.reset(done);
-          console.log(done);
+          var ongoing = this.collection.ongoing();
+          this.collection = this.collection.reset(ongoing);
+          console.log(ongoing);
       },
       events: {
         'keypress .new-todo1': 'createTodoOnEnter',
@@ -29,19 +29,19 @@ app.CompletedView =  Backbone.View.extend({
         },
         onAdd: function(todo){
         var view = new app.TodoView({model: todo});
-        $('#todo-list1').append(view.render().el);
+        $('.todo-list1').append(view.render().el);
        
       },
       onRemove: function(todo){ 
-        this.$('#todo-list1').html(''); 
+        this.$('.todo-list1').html(''); 
         this.collection.each(this.onAdd, this);
         var view = new app.TodoView({model: todo});
-        $('#todo-list1 li #' + view.model.cid).remove();
+        $('.todo-list1 li #' + view.model.cid).remove();
        
       },
         onReset: function(collection){
             console.log(collection);
-        this.$('#todo-list1').html(''); 
+        this.$('.todo-list1').html(''); 
         collection.each(this.onAdd, this);
       },
       toggleAllCompleted: function(){
