@@ -4,12 +4,18 @@ app.CompletedView =  Backbone.View.extend({
     initialize: function(attrs){
           this.completed = this.$('#toggleAll');
           this.input = this.$('#new-todo1');
-          this.collection.on('add', this.addOne1, this);
-          this.collection.on('remove', this.removeOne1, this);    
-          this.collection.on('reset', this.addAll1, this);
+          this.collection.on('add', this.onAdd, this);
+          this.collection.on('remove', this.onRemove, this);    
+          this.collection.on('reset', this.onReset,this);
           this.collection.fetch(); 
+          this.render();
+          console.log(this.collection);
       },
-      
+      render: function(){
+          var done = this.collection.done();
+          this.collection = this.collection.reset(done);
+          console.log(done);
+      },
       events: {
         'keypress #new-todo1': 'createTodoOnEnter',
         'click .toggleAll': 'toggleAllCompleted',
@@ -21,25 +27,22 @@ app.CompletedView =  Backbone.View.extend({
             this.collection.create(this.newAttributes());
             this.input.val(''); 
         },
-        addOne1: function(todo){
+        onAdd: function(todo){
         var view = new app.TodoView({model: todo});
         $('#todo-list1').append(view.render().el);
        
       },
-      removeOne1: function(todo){
-          console.log(todo);
-          this.$('#todo-list1').html(''); 
-        this.collection.each(this.addOne1, this);
+      onRemove: function(todo){ 
+        this.$('#todo-list1').html(''); 
+        this.collection.each(this.onAdd, this);
         var view = new app.TodoView({model: todo});
-         console.log(view);
-         
-         //console.log(todo.cid);
         $('#todo-list1 li #' + view.model.cid).remove();
        
       },
-        addAll1: function(){
+        onReset: function(collection){
+            console.log(collection);
         this.$('#todo-list1').html(''); 
-        this.collection.each(this.addOne1, this);
+        collection.each(this.onAdd, this);
       },
       toggleAllCompleted: function(){
               this.collection.each(function(TodoItem){

@@ -4,9 +4,12 @@
        localStorage: new Store("backbone-todo"),
        byCompleted: function (completed) {
         filtered = this.filter(function (TodoItem) {
-            return app.TodoItem.get("completed") === completed;
+            return TodoItem.get("completed") === completed;
         });
+        
         return new app.TodoListCollection(filtered);
+    },done: function() {
+      return this.where({completed: true});
     }
    });
 

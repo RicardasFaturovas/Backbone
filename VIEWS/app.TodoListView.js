@@ -40,6 +40,7 @@
         else {
           //console.log(this.doneCollection);
           this.doneCollection.remove(todo);
+          
         }
       },
       removeFromCompleted: function(todo){
