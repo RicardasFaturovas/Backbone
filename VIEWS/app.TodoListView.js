@@ -12,6 +12,10 @@
           this.collection.on('destroy', this.removeFromCompleted, this);
           this.collection.fetch(); 
       },
+      render: function(){
+          var all = this.collection.all()
+          this.collection.reset(options.previousModels);
+      },
       events: {
         'keypress #new-todo': 'createTodoOnEnter',
         'click .toggleAll': 'toggleAllCompleted',

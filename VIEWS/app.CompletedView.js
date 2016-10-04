@@ -12,7 +12,7 @@ app.CompletedView =  Backbone.View.extend({
           console.log(this.collection);
       },
       render: function(){
-          var done = this.collection.done();
+          var done = app.todoListCollection.done();
           this.collection = this.collection.reset(done);
           console.log(done);
       },
@@ -24,7 +24,9 @@ app.CompletedView =  Backbone.View.extend({
             if ( e.which !== 13 || !this.input.val().trim() ) { // ENTER_KEY = 13
             return;
             }
+            
             this.collection.create(this.newAttributes());
+            
             this.input.val(''); 
         },
         onAdd: function(todo){
@@ -40,7 +42,7 @@ app.CompletedView =  Backbone.View.extend({
        
       },
         onReset: function(collection){
-            console.log(collection);
+        console.log(collection);
         this.$('#todo-list1').html(''); 
         collection.each(this.onAdd, this);
       },

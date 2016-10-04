@@ -12,7 +12,7 @@ app.OngoingView =  Backbone.View.extend({
           console.log(this.collection);
       },
       render: function(){
-          var ongoing = this.collection.ongoing();
+          var ongoing = app.todoListCollection.ongoing();
           this.collection = this.collection.reset(ongoing);
           console.log(ongoing);
       },
@@ -24,10 +24,11 @@ app.OngoingView =  Backbone.View.extend({
             if ( e.which !== 13 || !this.input.val().trim() ) { // ENTER_KEY = 13
             return;
             }
-            this.collection.create(this.newAttributes());
+            this.collection.create(this.newAttributes());      
             this.input.val(''); 
         },
         onAdd: function(todo){
+            app.todoListCollection.add(todo);
         var view = new app.TodoView({model: todo});
         $('.todo-list1').append(view.render().el);
        
