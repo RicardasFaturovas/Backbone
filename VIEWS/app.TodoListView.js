@@ -4,7 +4,7 @@
       initialize: function(){
           this.doneCollection= this.options.doneCollection; 
           this.ongoingCollection= this.options.ongoingCollection; 
-          this.completed = this.$('#toggleAll');
+          this.completed = this.$('.toggleAll');
           this.input = this.$('#new-todo');
           this.collection.on('add', this.addOne, this);
           this.collection.on('reset', this.addAll, this);
