@@ -7,9 +7,12 @@
         return response;
     },
   render: function(){
+    
     this.$el.html(this.template(this.model.toJSON()));
     this.input = this.$('.edit');
+    this.input.hide();
     return this; // enable chained calls
+    
   },
   initialize: function(){
     this.model.on('change', this.render, this);
@@ -23,6 +26,7 @@
     'click .toggle': 'toggleCompleted',
   },
   edit: function(){
+    this.input.show();
     this.$el.addClass('editing');
     this.input.focus();
   },
@@ -32,6 +36,7 @@
       this.model.save({title: value});
     }
     this.$el.removeClass('editing');
+    this.input.hide();
   },
   toggleCompleted: function(){
          this.model.toggle();

@@ -2,7 +2,7 @@ var app = app || {}
 app.CompletedView =  Backbone.View.extend({  
     el:'#completed-todo',
     initialize: function(attrs){
-          this.completed = this.$('#toggleAll');
+          this.completed = this.$('.toggleAll');
           this.input = this.$('.new-todo1');
           this.collection.on('add', this.onAdd, this);
           this.collection.on('remove', this.onRemove, this);    
