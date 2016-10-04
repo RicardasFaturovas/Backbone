@@ -12,6 +12,8 @@
       return this.where({completed: true});
     },ongoing: function() {
       return this.where({completed: false});
-    }
+    },all: function() {
+      return this;
+    }   
    });
 
