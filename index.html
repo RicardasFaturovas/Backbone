@@ -7,26 +7,63 @@
 </head>
 <body>
   <style>
-    h1{
+    #todo{
       text-align: center;
     }
+    #completed-todo{
+      text-align: center;
+    }
+    #ongoing-todo{
+      text-align: center;
+    }
+    #view{
+      text-align: center;
+    }
+    ul {
+    list-style-position: inside;
+    margin-left: 0px;
+    }
+    div.all{
+      position: relative;
+      background-color: #99ccff;
+     border: 3px solid #0099ff;
+     border-radius: 45px;
+    }
+    div.completed{
+      position: relative;
+      background-color: #80ffbf;
+     border: 3px solid  #009933;
+     border-radius: 45px;
+    }
+    div.ongoing{
+      position: relative;
+      background-color: #ff9999;
+     border: 3px solid #ff3300;
+     border-radius: 45px;
+    }
+    
+
     </style>
 <!--~~~~~~~~~~~~~~~~ HTML ~~~~~~~~~~~~~~~~~~~~~ -->
 <section id="todo">
+  <div class="all">
   <header id="header">
     <h1>Todos</h1>
     <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
     <input id="new-todo" placeholder="What needs to be done?">
   </header>
+  
   <section id="main">
+    
     <ul id="todo-list"></ul>
   </section>
+  </div>
 </section>
 
 <!--~~~~~~~~~~~~~~~ VIEW TEMPLATE ~~~~~~~~~~~   -->
 <script type="text/template" id="item-template">
   <div class="view" id= "<%- this.model.cid%>">
-     <%- this.model.cid%>
+     <!--<%- this.model.cid%>-->
     <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
     <label><%- title %></label>
     <input class="edit" value="<%- title %>">
@@ -36,6 +73,7 @@
 <!--~~~~~~~~~~~~~~~ COMPLETED VIEW TEMPLATE ~~~~~~~~~~~   -->
 
 <section id="completed-todo">
+  <div class="completed">
   <header id="header">
     <h1>Completed</h1>
     <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
@@ -44,10 +82,12 @@
   <section id="main">
     <ul id="todo-list1"></ul>
   </section>
+  </div>
 </section>
 <!--~~~~~~~~~~~~~~~ ONGOING VIEW TEMPLATE ~~~~~~~~~~~   -->
 
 <section id="ongoing-todo">
+  <div class="ongoing">
   <header id="header">
     <h1>Ongoing</h1>
     <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
@@ -56,6 +96,7 @@
   <section id="main">
     <ul class="todo-list1"></ul>
   </section>
+  </div>
 </section>
   
   <!--~~~~~~~~~~~~~~~ Libraries ~~~~~~~~~~~~~~~~~ -->
