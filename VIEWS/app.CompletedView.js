@@ -2,7 +2,7 @@ var app = app || {}
 app.CompletedView =  Backbone.View.extend({  
     el:'#completed-todo',
     initialize: function(attrs){
-          this.completed = this.$('.toggleAll');
+          this.completed = this.$('#toggleAll');
           this.input = this.$('#new-todo1');
           this.collection.on('add', this.onAdd, this);
           this.collection.on('remove', this.onRemove, this);    
@@ -25,7 +25,6 @@ app.CompletedView =  Backbone.View.extend({
             return;
             }
             this.collection.create(this.newAttributes());
-            
             this.input.val(''); 
         },
         onAdd: function(todo){
@@ -42,7 +41,7 @@ app.CompletedView =  Backbone.View.extend({
        
       },
         onReset: function(collection){
-        console.log(collection);
+            console.log(collection);
         this.$('#todo-list1').html(''); 
         collection.each(this.onAdd, this);
       },

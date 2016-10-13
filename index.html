@@ -41,7 +41,7 @@
      border: 3px solid #ff3300;
      border-radius: 45px;
     }
-    
+
 
     </style>
 <!--~~~~~~~~~~~~~~~~ HTML ~~~~~~~~~~~~~~~~~~~~~ -->
@@ -52,9 +52,9 @@
     <input class="toggleAll" type="checkbox" <%= completed ? 'checked' : '' %>
     <input id="new-todo" placeholder="What needs to be done?">
   </header>
-  
+
   <section id="main">
-    
+
     <ul id="todo-list"></ul>
   </section>
   </div>
@@ -107,12 +107,12 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
 
 <!--~~~~~~~~~~~~~~~ FILES ~~~~~~~~~~~~~~~~~ -->
-  <script src="C:\Projects\Backbone\MODELS\app.TodoItem.js"></script>
-  <script src="C:\Projects\Backbone\COLLECTIONS\app.TodoListCollection.js"></script>
-  <script src="C:\Projects\Backbone\VIEWS\app.TodoView.js" type="text/javascript"></script>
-  <script src="C:\Projects\Backbone\VIEWS\app.TodoListView.js" type="text/javascript"></script>  
-  <script src="C:\Projects\Backbone\VIEWS\app.CompletedView.js" type="text/javascript"></script>  
-  <script src="C:\Projects\Backbone\VIEWS\app.ongoingView.js" type="text/javascript"></script>  
+  <script src="MODELS/app.TodoItem.js"></script>
+  <script src="COLLECTIONS/app.TodoListCollection.js"></script>
+  <script src="VIEWS/app.TodoView.js" type="text/javascript"></script>
+  <script src="VIEWS/app.TodoListView.js" type="text/javascript"></script>
+  <script src="VIEWS/app.CompletedView.js" type="text/javascript"></script>
+  <script src="VIEWS/app.ongoingView.js" type="text/javascript"></script>
 
 
  <!--~~~~~~~~~~~~~~~~ JS CODE ~~~~~~~~~~~~~~~~~~~~~ -->
@@ -124,10 +124,10 @@
    app.todoListCollection = new app.TodoListCollection();
    app.completedTodoListCollection = app.todoListCollection.byCompleted('true');
    app.ongoingTodoListCollection = app.todoListCollection.byCompleted('false');
-   app.appView = new app.TodoListView({collection: app.todoListCollection, doneCollection: app.completedTodoListCollection, ongoingCollection: app.ongoingTodoListCollection });  
+   app.appView = new app.TodoListView({collection: app.todoListCollection, doneCollection: app.completedTodoListCollection, ongoingCollection: app.ongoingTodoListCollection });
    app.completedView = new app.CompletedView({collection: app.completedTodoListCollection});  
-   app.ongoingView = new app.OngoingView({collection: app.ongoingTodoListCollection});  
-  
+   app.ongoingView = new app.OngoingView({collection: app.ongoingTodoListCollection});
+
   </script>
   
 </body>
